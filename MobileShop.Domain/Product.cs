@@ -14,6 +14,8 @@ namespace MobileShop.Domain
         public MemoryAndProcessor MemoryAndProcessor { get; set; }
         public Additionally Additionally { get; set; }
         [Required]
+        public List<ImageModel> Images { get; set; }
+        [Required]
         public Guid BrandId { get; set; }
     }
 }
