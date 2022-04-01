@@ -1,0 +1,47 @@
+﻿@using MobileShop.Domain
+@{
+    Layout = "_AdminLayout";
+}
+
+@model List<Brand>
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h3>Brands table</h3>
+            <a asp-controller="admin" asp-action="addbrand" class="btn btn-success text-white">+ Add new brand</a>
+        </div>
+        <table class="table table-striped mt-3">
+    
+        @if (Model.Count != 0)
+                {
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                          <th scope="row">@item.Id</th>
+                          <td>@item.Name</td>
+                          <td>
+                                <a asp-controller="admin" asp-action="editbrand" asp-route-id="@item.Id" class="btn btn-success text-white">Edit</a>
+                                <a asp-controller="admin" asp-action="deletebrand" asp-route-id="@item.Id" onclick="return confirm('Are you sure delete this item?');" class="btn btn-danger text-white">Delete</a>
+                          </td>
+                        </tr>
+                    }
+      </tbody>
+                }
+                else
+                {
+                    <tr>
+                        <span class="text-secondary" style="font-size: 22px;">There is no brands yet!</span>
+                    </tr>
+                }
+    </table>
+    </div>
+</div>

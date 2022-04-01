@@ -1,9 +1,10 @@
 ﻿using MobileShop.Data;
 using MobileShop.Domain;
+using MobileShop.Service.Interfaces;
 
 namespace MobileShop.Service.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : IProductInterface
     {
         private readonly ApplicationDbContext _dbContext;
 

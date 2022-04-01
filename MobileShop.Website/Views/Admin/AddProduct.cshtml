@@ -1,0 +1,189 @@
+﻿@using MobileShop.Domain
+@{
+    Layout = "_AdminLayout";
+}
+
+@model ProductAddViewModel
+
+<div class="card mb-4">
+    <h5 class="card-header">Add new brand</h5>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <form asp-controller="admin" asp-action="addproduct" method="post">
+                    <div class="mb-3">
+                        <label  class="col-md-2 col-form-label">Brand</label>
+                        <div class="col-md-10">
+                            <select asp-for="Product.BrandId" class="form-select">
+                            @foreach (var item in Model.Brands)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                        </div>
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.Price" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.Price" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.OSVersion" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.OSVersion" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.Name" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.Name" class="form-control" type="text">
+                    </div>
+                    
+                    <label asp-for="Product.MainCharacters.TypeOfFrame" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.TypeOfFrame" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.IsDual" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <select  asp-for="Product.MainCharacters.IsDual"  class="form-select" asp-items="@Html.GetEnumSelectList<Confirm>()">
+                        </select>
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.Weight" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.Weight" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.Dimensions" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.Dimensions" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.Model" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.Model" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.SimCardType" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MainCharacters.SimCardType" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MainCharacters.HasFingerPrintScanner" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Product.MainCharacters.HasFingerPrintScanner" class="form-select" asp-items="@Html.GetEnumSelectList<Confirm>()">
+                        </select>
+                    </div>
+
+                    <label asp-for="Product.ScreenCharacters.ScreenType" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.ScreenCharacters.ScreenType" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.ScreenCharacters.Diagonal" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.ScreenCharacters.Diagonal" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.ScreenCharacters.ImageSize" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.ScreenCharacters.ImageSize" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.ScreenCharacters.AspectRatio" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.ScreenCharacters.AspectRatio" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.ScreenCharacters.ScreenHZ" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.ScreenCharacters.ScreenHZ" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MultimediaFeatures.NumberOfCameras" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MultimediaFeatures.NumberOfCameras" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MultimediaFeatures.Cameras" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MultimediaFeatures.Cameras" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MultimediaFeatures.Flash" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MultimediaFeatures.Flash" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MultimediaFeatures.FrontCamera" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MultimediaFeatures.FrontCamera" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MultimediaFeatures.AudioSupport" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MultimediaFeatures.AudioSupport" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Connection.StandardsSupport" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Connection.StandardsSupport" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Connection.Interfaces" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Connection.Interfaces" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MemoryAndProcessor.CPU" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MemoryAndProcessor.CPU" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MemoryAndProcessor.NumberOfCores" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MemoryAndProcessor.NumberOfCores" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MemoryAndProcessor.VideoProcessor" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MemoryAndProcessor.VideoProcessor" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MemoryAndProcessor.RAM" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MemoryAndProcessor.RAM" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.MemoryAndProcessor.ROM" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.MemoryAndProcessor.ROM" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Additionally.Equipment" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Additionally.Equipment" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Additionally.BatteryType" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Additionally.BatteryType" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Additionally.BatteryCapacity" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Additionally.BatteryCapacity" class="form-control" type="text">
+                    </div>
+
+                    <label asp-for="Product.Additionally.ChargerType" class="col-md-2 col-form-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Product.Additionally.ChargerType" class="form-control" type="text">
+                    </div>
+
+                    <div class="d-flex justify-content-lg-start">
+                        <a asp-controller="admin" asp-action="index" class="btn btn-secondary m-3">Cancel</a>
+                        <button type="submit" class="btn btn-success m-3">Save</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>

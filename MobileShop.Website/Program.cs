@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using MobileShop.Data;
+using MobileShop.Service.Interfaces;
+using MobileShop.Service.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IBrandInterface, BrandRepository>();
+builder.Services.AddTransient<IProductInterface, ProductRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));
@@ -29,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=admin}/{action=Index}/{id?}");
 
 app.Run();

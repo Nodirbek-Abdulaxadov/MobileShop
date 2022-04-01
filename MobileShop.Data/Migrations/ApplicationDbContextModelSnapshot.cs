@@ -130,6 +130,9 @@ namespace MobileShop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<string>("SimCardType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

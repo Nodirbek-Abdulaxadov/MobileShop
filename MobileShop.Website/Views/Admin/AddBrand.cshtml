@@ -1,0 +1,25 @@
+﻿@using MobileShop.Domain
+@{
+    Layout = "_AdminLayout";
+}
+
+@model Brand
+
+<div class="card mb-4">
+    <h5 class="card-header">Add new brand</h5>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <form asp-controller="admin" asp-action="addbrand" method="post">
+                    <label asp-for="Name" class="col-md-2 col-form-label">Brand Name</label>
+                    <div class="col-md-10">
+                        <input asp-for="Name" class="form-control" type="text" placeholder="Enter brand name...">
+                    </div>
+
+                    <div class="d-flex justify-content-lg-start">
+                        <a asp-controller="admin" asp-action="index" class="btn btn-secondary m-3">Cancel</a>
+                        <button type="submit" class="btn btn-success m-3">Save</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>

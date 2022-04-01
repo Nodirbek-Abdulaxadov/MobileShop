@@ -1,0 +1,50 @@
+﻿@using MobileShop.Domain
+@{
+    Layout = "_AdminLayout";
+}
+@model List<Product>
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h3>Products table</h3>
+            <a asp-controller="admin" asp-action="addproduct" class="btn btn-success text-white">+ Add new product</a>
+        </div>
+        <table class="table table-striped mt-3">
+    <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">BrandId</th>
+          <th scope="col">Marka</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (Model.Count != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                          <th scope="row">@item.Id</th>
+                          <td>@item.BrandId</td>
+                          <td>@item.MainCharacters.Name</td>
+                          <td>@item.MainCharacters.Price</td>
+                          <td>
+                                <a class="btn btn-primary text-white">View</a>
+                                <a class="btn btn-success text-white">Edit</a>
+                                <a class="btn btn-danger text-white">Delete</a>
+                          </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <span class="text-secondary" style="font-size: 22px;">There is no products yet!</span>
+                    </tr>
+                }
+            </tbody>
+    </table>
+    </div>
+</div>
