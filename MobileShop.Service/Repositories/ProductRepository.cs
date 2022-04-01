@@ -1,4 +1,5 @@
-﻿using MobileShop.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MobileShop.Data;
 using MobileShop.Domain;
 using MobileShop.Service.Interfaces;
 
@@ -30,7 +31,14 @@ namespace MobileShop.Service.Repositories
             _dbContext.Products.FirstOrDefault(b => b.Id == id);
 
         public List<Product> GetProducts() =>
-            _dbContext.Products.ToList();
+            _dbContext.Products
+            .Include(p => p.MainCharacters)
+            .Include(p => p.ScreenCharacters)
+            .Include(p => p.MultimediaFeatures)
+            .Include(p => p.Connection)
+            .Include(p => p.MemoryAndProcessor)
+            .Include(p => p.Additionally)
+            .ToList();
 
         public Product UpdateProduct(Product product)
         {
