@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MobileShop.Data;
 
@@ -11,9 +12,10 @@ using MobileShop.Data;
 namespace MobileShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220404094754_image")]
+    partial class image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,8 @@ namespace MobileShop.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Images");
                 });
@@ -281,6 +285,15 @@ namespace MobileShop.Data.Migrations
                     b.ToTable("ScreenCharacters");
                 });
 
+            modelBuilder.Entity("MobileShop.Domain.ImageModel", b =>
+                {
+                    b.HasOne("MobileShop.Domain.Product", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MobileShop.Domain.Product", b =>
                 {
                     b.HasOne("MobileShop.Domain.Additionally", "Additionally")
@@ -330,6 +343,11 @@ namespace MobileShop.Data.Migrations
                     b.Navigation("MultimediaFeatures");
 
                     b.Navigation("ScreenCharacters");
+                });
+
+            modelBuilder.Entity("MobileShop.Domain.Product", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

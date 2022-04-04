@@ -40,6 +40,16 @@ namespace MobileShop.Service.Repositories
             .Include(p => p.Additionally)
             .ToList();
 
+        public Product GetProductWithContents(Guid id) =>
+            _dbContext.Products
+            .Include(p => p.MainCharacters)
+            .Include(p => p.ScreenCharacters)
+            .Include(p => p.MultimediaFeatures)
+            .Include(p => p.Connection)
+            .Include(p => p.MemoryAndProcessor)
+            .Include(p => p.Additionally)
+            .FirstOrDefault(p => p.Id == id);
+
         public Product UpdateProduct(Product product)
         {
             _dbContext.Products.Update(product);

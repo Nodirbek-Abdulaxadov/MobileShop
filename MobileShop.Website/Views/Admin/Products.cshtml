@@ -31,9 +31,9 @@
                           <td>@item.MainCharacters.Name</td>
                           <td>@item.MainCharacters.Price</td>
                           <td>
-                                <a class="btn btn-primary text-white">View</a>
+                                <a asp-controller="admin" asp-action="details" asp-route-id="@item.Id" class="btn btn-primary text-white">View</a>
                                 <a class="btn btn-success text-white">Edit</a>
-                                <a class="btn btn-danger text-white">Delete</a>
+                                <a asp-controller="admin" asp-action="deleteproduct" asp-route-id="@item.Id"  asp-route-id="@item.Id" onclick="return confirm('Are you sure delete this item?');" class="btn btn-danger text-white">Delete</a>
                           </td>
                         </tr>
                     }

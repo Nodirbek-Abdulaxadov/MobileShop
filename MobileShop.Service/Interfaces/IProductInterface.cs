@@ -6,6 +6,7 @@ namespace MobileShop.Service.Interfaces
     {
         List<Product> GetProducts();
         Product GetProduct(Guid id);
+        Product GetProductWithContents(Guid id);
         Product AddProduct(Product product);
         Product UpdateProduct(Product product);
         void DeleteProduct(Guid id);

@@ -2,6 +2,7 @@
 using MobileShop.Domain;
 using MobileShop.Service.Interfaces;
 using MobileShop.Website.Models;
+using MobileShop.Website.Services;
 
 namespace MobileShop.Website.Controllers
 {
@@ -9,11 +10,15 @@ namespace MobileShop.Website.Controllers
     {
         private readonly IBrandInterface _brandInterface;
         private readonly IProductInterface _productInterface;
+        private readonly IFileInterface _fileInterface;
 
-        public AdminController(IBrandInterface brandInterface, IProductInterface productInterface)
+        public AdminController(IBrandInterface brandInterface, 
+                               IProductInterface productInterface,
+                               IFileInterface fileInterface)
         {
             _brandInterface = brandInterface;
             _productInterface = productInterface;
+            _fileInterface = fileInterface;
         }
         public IActionResult Index()
         {
@@ -44,9 +49,31 @@ namespace MobileShop.Website.Controllers
         public IActionResult AddProduct(ProductAddViewModel viewModel)
         {
             viewModel.Product.Id = Guid.NewGuid();
-
+            foreach (var item in viewModel.ImageFiles)
+            {
+                var model = _fileInterface.SaveImages(item);
+                model.ProductId = viewModel.Product.Id;
+            }
             _productInterface.AddProduct(viewModel.Product);
 
+            return RedirectToAction("Products");
+        }
+
+        public IActionResult Details(Guid Id)
+        {
+            var item = _productInterface.GetProductWithContents(Id);
+            ProductDetailsViewModel viewModel = new ProductDetailsViewModel()
+            {
+                Product = item,
+                Images = _fileInterface.GetImages(item.Id)
+            };
+
+            return View(viewModel);
+        }
+
+        public IActionResult DeleteProduct(Guid id)
+        {
+            _productInterface.DeleteProduct(id);
             return RedirectToAction("Products");
         }
 

@@ -1,0 +1,43 @@
+﻿@using MobileShop.Domain
+@{
+    Layout = "_AdminLayout";
+}
+
+@model ProductDetailsViewModel
+
+<div class="card mb-4">
+    <h5 class="card-header">Product details</h5>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <div>
+
+                    <div class="row">                        
+       
+                    @foreach (var item in Model.Images)
+                        {
+                            string imagePath = "~/images/" + item.Path;
+                            <div class="col-md-3">
+                                <img class="p-1" width="250" src="@imagePath" asp-append-version="true">
+                            </div>
+                        }
+                    </div>
+
+                    <h5 class="card-title">Name:</h5>
+                    <p class="card-text">@Model.Product.MainCharacters.Name</p>
+
+                     <h5 class="card-title">Model:</h5>
+                    <p class="card-text">@Model.Product.MainCharacters.Model</p>
+
+                     <h5 class="card-title">Price:</h5>
+                    <p class="card-text">$ @Model.Product.MainCharacters.Price</p>
+
+                     <h5 class="card-title">OSVersion:</h5>
+                    <p class="card-text">@Model.Product.MainCharacters.OSVersion</p>
+
+                     <h5 class="card-title">Weight:</h5>
+                    <p class="card-text">@Model.Product.MainCharacters.Weight</p>
+
+                </div>
+            </div>
+        </div>
+</div>

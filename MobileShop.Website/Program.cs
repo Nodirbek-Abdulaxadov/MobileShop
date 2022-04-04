@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MobileShop.Data;
 using MobileShop.Service.Interfaces;
 using MobileShop.Service.Repositories;
+using MobileShop.Website.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IBrandInterface, BrandRepository>();
 builder.Services.AddTransient<IProductInterface, ProductRepository>();
+builder.Services.AddTransient<IFileInterface, FileRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("LocalDB")));

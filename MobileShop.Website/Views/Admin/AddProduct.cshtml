@@ -9,7 +9,7 @@
     <h5 class="card-header">Add new brand</h5>
         <div class="card-body">
             <div class="mb-3 row">
-                <form asp-controller="admin" asp-action="addproduct" method="post">
+                <form asp-controller="admin" asp-action="addproduct" enctype="multipart/form-data" method="post">
                     <div class="mb-3">
                         <label  class="col-md-2 col-form-label">Brand</label>
                         <div class="col-md-10">
@@ -177,6 +177,11 @@
                     <label asp-for="Product.Additionally.ChargerType" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                         <input asp-for="Product.Additionally.ChargerType" class="form-control" type="text">
+                    </div>
+
+                    <div class="col-md-10">
+                      <label asp-for="ImageFiles" class="form-label">Multiple files input example</label>
+                      <input asp-for="ImageFiles" class="form-control" type="file" multiple="multiple">
                     </div>
 
                     <div class="d-flex justify-content-lg-start">
