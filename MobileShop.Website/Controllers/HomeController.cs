@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MobileShop.Service.Interfaces;
 using MobileShop.Website.Models;
+using MobileShop.Website.Services;
 using System.Diagnostics;
 
 namespace MobileShop.Website.Controllers
@@ -7,15 +9,29 @@ namespace MobileShop.Website.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductInterface _productInterface;
+        private readonly IFileInterface _fileInterface;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              IProductInterface productInterface,
+                              IFileInterface fileInterface)
         {
             _logger = logger;
+            _productInterface = productInterface;
+            _fileInterface = fileInterface;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var listOfProducts = _productInterface.GetProducts().Take(6).ToList();
+            var listOfImages = _fileInterface.GetImages();
+            IndexViewModel viewModel = new IndexViewModel()
+            {
+                Products = listOfProducts,
+                Images = listOfImages
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

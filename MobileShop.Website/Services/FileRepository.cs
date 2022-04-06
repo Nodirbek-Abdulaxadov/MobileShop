@@ -24,6 +24,8 @@ namespace MobileShop.Website.Services
             return _dbContext.Images.Where(image => image.ProductId == id).ToList();
         }
 
+        public List<ImageModel> GetImages() =>
+            _dbContext.Images.ToList();
         public ImageModel SaveImages(IFormFile file)
         {  
             string uniqueName = String.Empty;
