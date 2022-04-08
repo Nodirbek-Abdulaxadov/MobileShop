@@ -34,6 +34,45 @@ namespace MobileShop.Website.Controllers
             return View(viewModel);
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Test()
+        {
+            return View();
+        }
+
+        public IActionResult Details(Guid id)
+        {
+            DetailViewModel viewModel = new DetailViewModel()
+            {
+                Product = _productInterface.GetProductWithContents(id),
+                Images = _fileInterface.GetImages(id)
+            };
+
+            return View(viewModel);
+        }
+
+        public IActionResult Products()
+        {
+            var listOfProducts = _productInterface.GetProducts().ToList();
+            var listOfImages = _fileInterface.GetImages();
+            IndexViewModel viewModel = new IndexViewModel()
+            {
+                Products = listOfProducts,
+                Images = listOfImages
+            };
+
+            return View(viewModel);
+        }
+
+        public IActionResult WhyUs()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
