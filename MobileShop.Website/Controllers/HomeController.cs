@@ -39,6 +39,11 @@ namespace MobileShop.Website.Controllers
             return View();
         }
 
+        public IActionResult Card()
+        {
+            return View();
+        }
+
         public IActionResult Test()
         {
             return View();
