@@ -1,7 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Card Page";
     Layout = "_Layout";
 }
+@model IndexViewModel
+
 <style>
     .sp {
         font-size: 26px;
@@ -23,16 +25,19 @@
           <div class="container mx-5 cardd">
               <div class="row">
                   <div class="col-md-4">
-                      <img width="300" src="~/images/about-img.jpg"/>
+                      @{
+                          string firstImagePath = "~/images/" + Model.Images.FirstOrDefault(img => img.ProductId == Model.Product.Id).Path;
+                      }
+                      <img width="300" src="@firstImagePath" asp-append-version="true" />
                   </div>
                   <div class="col-md-8">
                       <div class="d-flex justify-content-between sp">
                           <span>Name:</span>
-                          <span>Samsung A51</span>
+                          <span>@Model.Product.MainCharacters.Name @Model.Product.MainCharacters.Model</span>
                       </div>
                       <div class="d-flex justify-content-between sp">
                           <span>Price:</span>
-                          <span>$ </span><span id="price">350</span>
+                          <span>$ </span><span id="price">@Model.Product.MainCharacters.Price</span>
                       </div>
                       <div class="d-flex justify-content-between sp">
                           <span>Quantity</span>
@@ -44,7 +49,7 @@
                       </div>
                       <div class="d-flex justify-content-between sp">
                           <span>Total:</span>
-                          <span>$ </span><span id="total">1050</span>
+                          <span>$ </span><span id="total">@Model.Product.MainCharacters.Price</span>
                       </div>
                   </div>
               </div>
@@ -56,10 +61,11 @@
     var count = 1;
     var totalPrice = 0;
     let counter = document.getElementById('counter');
-    let price = document.getElementById('price');
+    let price = document.getElementById('price').textContent;
     let total = document.getElementById('total');
       if (count > 0 && count < 50) {
-          function C_Plus() {
+
+         function C_Plus() {
              count++;
              totalPrice = count * Number(price);
              total.innerHTML = totalPrice;  
@@ -68,10 +74,11 @@
 
          function C_Minus() {
              if (count > 0) {
-                 count--;
+                count--;
+                totalPrice = count * Number(price);
+                total.innerHTML = totalPrice;
                 counter.innerHTML = count;
              }
          }
-      }       
-    
+      }    
 </script>

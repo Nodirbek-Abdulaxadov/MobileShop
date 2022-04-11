@@ -39,9 +39,16 @@ namespace MobileShop.Website.Controllers
             return View();
         }
 
-        public IActionResult Card()
+        public IActionResult Card(Guid id)
         {
-            return View();
+            var pr = _productInterface.GetProductWithContents(id);
+            var listOfImages = _fileInterface.GetImages();
+            IndexViewModel viewModel = new IndexViewModel()
+            {
+                Product = pr,
+                Images = listOfImages
+            };
+            return View(viewModel);
         }
 
         public IActionResult Test()
